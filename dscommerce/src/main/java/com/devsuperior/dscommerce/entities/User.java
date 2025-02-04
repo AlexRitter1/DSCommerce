@@ -21,8 +21,8 @@ public class User {
     private LocalDate birthDate;
     private String password;
 
-    @OneToMany(mappedBy = "client")
-    private List<Order> orders = new ArrayList<>();
+    @OneToMany(mappedBy = "client") // um cliente para muitos pedidos
+    private List<Order> orders = new ArrayList<>(); // uma lista de pedidos
 
     public User() {
     }

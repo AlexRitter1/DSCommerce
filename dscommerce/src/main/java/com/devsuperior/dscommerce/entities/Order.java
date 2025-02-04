@@ -16,9 +16,12 @@ public class Order {
     private Instant moment;
     private OrderStatus status;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id")
+    @ManyToOne // muitos pedidos para um único cliente
+    @JoinColumn(name = "client_id") //inner join com cliente
     private User client;
+
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    private Payment payment;
 
     public Order() {
     }

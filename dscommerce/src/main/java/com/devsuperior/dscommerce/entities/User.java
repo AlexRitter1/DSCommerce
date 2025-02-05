@@ -20,7 +20,7 @@ public class User {
     @Column(unique = true) // coluna única no banco de dados
     private String email;
 
-    private String fone;
+    private String phone;
     private LocalDate birthDate;
     private String password;
 
@@ -34,7 +34,7 @@ public class User {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.fone = fone;
+        this.phone = fone;
         this.birthDate = birthDate;
         this.password = password;
     }
@@ -64,11 +64,11 @@ public class User {
     }
 
     public String getFone() {
-        return fone;
+        return phone;
     }
 
-    public void setFone(String fone) {
-        this.fone = fone;
+    public void setFone(String phone) {
+        this.phone = phone;
     }
 
     public LocalDate getBirthDate() {
@@ -95,12 +95,12 @@ public class User {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && Objects.equals(name, user.name) && Objects.equals(email, user.email) && Objects.equals(fone, user.fone) && Objects.equals(birthDate, user.birthDate) && Objects.equals(password, user.password);
+        return id == user.id && Objects.equals(name, user.name) && Objects.equals(email, user.email) && Objects.equals(phone, user.phone) && Objects.equals(birthDate, user.birthDate) && Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, fone, birthDate, password);
+        return Objects.hash(id, name, email, phone, birthDate, password);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", fone='" + fone + '\'' +
+                ", fone='" + phone + '\'' +
                 ", birthDate=" + birthDate +
                 ", password='" + password + '\'' +
                 '}';

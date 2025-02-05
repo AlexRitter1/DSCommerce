@@ -4,6 +4,8 @@ import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
+import java.util.Objects;
+
 @Embeddable
 public class OrdemItemPK {
 
@@ -37,5 +39,20 @@ public class OrdemItemPK {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+
+        OrdemItemPK that = (OrdemItemPK) o;
+        return Objects.equals(product, that.product) && Objects.equals(order, that.order);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hashCode(product);
+        result = 31 * result + Objects.hashCode(order);
+        return result;
     }
 }

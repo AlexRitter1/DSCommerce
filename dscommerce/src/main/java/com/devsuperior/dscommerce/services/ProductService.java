@@ -30,4 +30,10 @@ public class ProductService {
         Page<Product> results = productRepository.findAll(pageable);
         return results.map(p -> new ProductDTO(p));
     }
+
+    @Transactional
+    public ProductDTO insert(ProductDTO productDTO){
+        productRepository.save(new Product(productDTO));
+        return productDTO;
+    }
 }

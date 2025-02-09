@@ -36,4 +36,33 @@ public class ProductService {
         productRepository.save(new Product(productDTO));
         return productDTO;
     }
-}
+
+    @Transactional
+    public ProductDTO update(Long id, ProductDTO productDTO){
+        Product product = productRepository.getReferenceById(id);
+        dtoToProduct(product, productDTO);
+        product = productRepository.save(product);
+        return new ProductDTO(product);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        productRepository.deleteById(id);
+    }
+
+
+
+
+
+    private void dtoToProduct(Product product, ProductDTO productDTO) {
+            if (productDTO == null || product == null) {
+                throw new IllegalArgumentException("Product or ProductDTO cannot be null");
+            }
+            // Copia os campos do DTO para a entidade Product
+            product.setName(productDTO.getName());
+            product.setDescription(productDTO.getDescription());
+            product.setPrice(productDTO.getPrice());
+            product.setImgUrl(productDTO.getImgUrl());
+        }
+
+    }

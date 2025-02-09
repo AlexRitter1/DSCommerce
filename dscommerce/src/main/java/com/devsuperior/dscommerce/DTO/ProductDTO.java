@@ -18,7 +18,7 @@ public class ProductDTO {
         this.id = product.getId();
         this.name = product.getName();
         this.description = product.getDescription();
-        this.price = getPrice();
+        this.price = product.getPrice();
         this.imgUrl = product.getImgUrl();
     }
 
@@ -38,7 +38,5 @@ public class ProductDTO {
         return imgUrl;
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() {   return id;  }
 }

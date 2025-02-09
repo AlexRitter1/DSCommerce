@@ -45,6 +45,7 @@ public class Product {
     }
 
     public Product(ProductDTO productDTO) {
+        this.id = productDTO.getId();
         this.name = productDTO.getName();
         this.description = productDTO.getDescription();
         this.price = productDTO.getPrice();

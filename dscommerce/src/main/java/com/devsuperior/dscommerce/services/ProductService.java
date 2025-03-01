@@ -35,8 +35,8 @@ public class ProductService {
 
     @Transactional
     public ProductDTO insert(ProductDTO productDTO){
-        productRepository.save(new Product(productDTO));
-        return productDTO;
+        var product = productRepository.save(new Product(productDTO));
+        return new ProductDTO(product);
     }
 
     @Transactional

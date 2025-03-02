@@ -41,7 +41,13 @@ public class UserService implements UserDetailsService {
 		
 		return user;
 	}
-	
+
+	@Transactional(readOnly = true)
+	public UserDTO getMe() {
+		User entity = authenticated();
+		return new UserDTO(entity);
+	}
+
 	protected User authenticated() {
 		try {
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -52,11 +58,5 @@ public class UserService implements UserDetailsService {
 		catch (Exception e) {
 			throw new UsernameNotFoundException("Invalid user");
 		}
-	}
-
-	@Transactional(readOnly = true)
-	public UserDTO getMe() {
-		User entity = authenticated();
-		return new UserDTO(entity);
 	}
 }

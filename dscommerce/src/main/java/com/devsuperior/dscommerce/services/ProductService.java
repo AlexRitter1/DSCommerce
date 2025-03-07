@@ -21,6 +21,12 @@ public class ProductService {
     private ProductRepository productRepository;
 
     @Transactional(readOnly = true)
+    public Page<ProductDTO> findByName(String name, Pageable pageable) {
+        var result = productRepository.searchByName(name, pageable);
+        return result.map(r -> new ProductDTO(r));
+    }
+
+    @Transactional(readOnly = true)
     public ProductDTO findById(Long id){
         var product = productRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Produto não encontrado"));

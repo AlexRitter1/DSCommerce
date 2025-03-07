@@ -28,10 +28,17 @@ public class ProductController {
     }
 
     @GetMapping
+    public ResponseEntity<Page<ProductDTO>> searchByName(
+            @RequestParam(name = "name", defaultValue = "") String name, Pageable pageable){
+        Page<ProductDTO> dto = productService.findByName(name, pageable);
+        return ResponseEntity.ok(dto);
+    }
+
+    /*@GetMapping
     public ResponseEntity<Page<ProductDTO>> findAll(Pageable pageable){
         var dto = productService.findAll(pageable); //retorna uma lista de objetos do tipo ProductDTO
         return ResponseEntity.ok(dto);
-    }
+    }*/
 
     @PostMapping
     public ResponseEntity<ProductDTO> insert(@RequestBody ProductDTO productDTO){
